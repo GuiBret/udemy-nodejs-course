@@ -12,26 +12,42 @@ const server = http.createServer((req, res) => {
         res.setHeader('Content-Type', 'text/html');
         res.write('<html>');
         res.write('<head><title>My first page</title></head>');
-        res.write('<body><form action="/message" method="POST"><input type="text" /><button type="submit">Send</button></form></body>');
+        res.write('<body><form action="/message" method="POST"><input type="text" name="message" /><button type="submit">Send</button></form></body>');
         res.write('</html>');
         return res.end();
 
     }
 
     if(url === '/message' && method === 'POST') {
-        fs.writeFileSync('myfile', "LOL")
-        res.statusCode = 302;
-        res.setHeader('Location', '/');
+        const body = [];
+        req.on('data', (chunk) => {
+            
+            body.push(chunk);
+        });
 
+        req.on('end', () => {
+            const parsedBody = Buffer.concat(body).toString();
+            const message = parsedBody.split('=')[1];
+            fs.writeFileSync('myfile', message);    
+
+            
+        });
+
+        res.setHeader('Location', '/');
+        res.statusCode = 302;
         return res.end();
+        
+        
+        
+        
     }
 
-    res.setHeader('Content-Type', 'text/html');
-    res.write('<html>');
-    res.write('<head><title>My first page</title></head>');
-    res.write('<body><h1>Hello</h1></body>');
-    res.write('</html>');
-    res.end();
+    // res.setHeader('Content-Type', 'text/html');
+    // res.write('<html>');
+    // res.write('<head><title>My first page</title></head>');
+    // res.write('<body><h1>Hello</h1></body>');
+    // res.write('</html>');
+    // res.end();
 
     
 });
