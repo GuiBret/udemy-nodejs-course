@@ -1,0 +1,3 @@
+COmmands : 
+    - npm init
+        - Creates a package.json file, interactive command
