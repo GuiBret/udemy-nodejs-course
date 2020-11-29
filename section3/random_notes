@@ -1,0 +1,34 @@
+Node : 
+
+- Single-threaded
+- Uses an event loop
+- Uses a worker pool
+
+Event loop :
+- created upon startup
+- handle event callbacks, NOT THE EVENT ITSELF (e.g, the writing of a file)
+- At each iteration : 
+   - Execute setTimeout & setInterval callbacks
+   - Checks pending callbacks (I/O (disk / network..) related callbacks)
+      - If there are too many callbacks, they are postponed to the next iteration
+   - Poll phase
+       - Check if there are new I/O events & execute their callbacks
+       - If it can't do it => deferred to phase 2 (check pending callbacks)
+       - If there are timer callbacks to be executed
+            - Go to phase 1
+   - Check phase
+       - Executes setImmediate callbacks
+       - setImmediate => like setInterval & setTimeout, but runs after each callback
+   - Close event callbacks
+       - Executes close event callbacks ()
+   - If there are no remaining events left
+       - Quit the process
+
+Worker pool is created & managed by Node
+- Multithreaded
+- Handles heavy tasks, such as file system mgmt
+- When a task is finished, the worker pool will trigger a callback in the event loop
+
+
+
+Performance ? 
