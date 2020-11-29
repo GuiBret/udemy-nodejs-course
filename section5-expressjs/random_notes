@@ -1,0 +1,10 @@
+Express : 
+    - Framework easing up the creation & usage of a server
+    - Handle boring details in order to focus on business logic
+    - Alternatives : 
+        - Vanilla Node.js (technically works, but cumbersome) 
+        - Adonis.js (Laravel-inspired)
+        - Koa
+        - Sails.js
+        - ...
+    - Most used framework, lots of packages gravitating around
