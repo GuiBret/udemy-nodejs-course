@@ -10,3 +10,13 @@ Package.json :
      - "Scripts" attribute lets you write commands more easily, for example to start a Node server
         - For standard commands (e.g. start), npm <standardcommand> is OK
         - For custom commands, npm run <customcommand>
+
+
+Packages : 
+    - Core node packages (fs, http, etc.)
+    - 3rd party packages (not incluided in Node)
+    - Available in npm repository
+    - Install using npm install <mypackage>
+    - Option "--save-dev" installs as dev dependency (not used for production deployment)
+    - Option "-g" installs globally (not in node_modules)
+    - Upon install, edits package.json with the installed package
