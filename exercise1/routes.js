@@ -6,6 +6,8 @@ const routesHandler = (req, res) => {
     // Sends back a simple greeting
     if(url === '/') {
         res.write('<h2>Hello from my Node server</h2>');
+        res.write('<form method="POST" action="/create-user"><input type="text" name="username" /><input type="submit"/></form>');
+
     } else if(url === '/users') { // Sends a dummy user list
         res.write('<h1>My user list</h1>');
         res.write('<ul><li>User 1</li><li>User 2</li></ul>');
