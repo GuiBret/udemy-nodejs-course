@@ -28,7 +28,3 @@ Worker pool is created & managed by Node
 - Multithreaded
 - Handles heavy tasks, such as file system mgmt
 - When a task is finished, the worker pool will trigger a callback in the event loop
-
-
-
-Performance ? 
