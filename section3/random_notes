@@ -28,3 +28,8 @@ Worker pool is created & managed by Node
 - Multithreaded
 - Handles heavy tasks, such as file system mgmt
 - When a task is finished, the worker pool will trigger a callback in the event loop
+
+
+Module system :
+
+- When importing a module (exported by module.exports), the properties of that instance cannot be modified from outside (read-only)
