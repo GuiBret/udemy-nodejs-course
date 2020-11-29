@@ -8,3 +8,8 @@ Express :
         - Sails.js
         - ...
     - Most used framework, lots of packages gravitating around
+    - Strong usage of middlewares :
+        - Request funneled through a bunch of actions
+        - app.use, 3 arguments : req, res, next
+            - Req & res, pretty much the same as usual
+            - next : function letting the request go to the following middleware
