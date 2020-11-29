@@ -1,3 +1,12 @@
 COmmands : 
     - npm init
         - Creates a package.json file, interactive command
+
+
+
+
+Package.json :
+     - Contains info about the project
+     - "Scripts" attribute lets you write commands more easily, for example to start a Node server
+        - For standard commands (e.g. start), npm <standardcommand> is OK
+        - For custom commands, npm run <customcommand>
