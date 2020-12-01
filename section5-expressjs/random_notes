@@ -13,3 +13,8 @@ Express :
         - app.use, 3 arguments : req, res, next
             - Req & res, pretty much the same as usual
             - next : function letting the request go to the following middleware
+
+
+
+Serve static files : 
+    - Add middleware express.static(<pathToPublicFolder>)
