@@ -7,14 +7,22 @@ Express :
         - Koa
         - Sails.js
         - ...
-    - Most used framework, lots of packages gravitating around
+    - Most used framework, lots of packages gravitating around => Highly extensible
     - Strong usage of middlewares :
         - Request funneled through a bunch of actions
         - app.use, 3 arguments : req, res, next
             - Req & res, pretty much the same as usual
             - next : function letting the request go to the following middleware
 
+    - Request filtering:  
+        - By path or by method
+            - If method: 
+                - exact match
+            - else
+                - the first segment only is matched
 
+    - Express routing
+        - Use express.Router to split routes
 
 Serve static files : 
     - Add middleware express.static(<pathToPublicFolder>)
