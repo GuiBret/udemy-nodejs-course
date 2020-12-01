@@ -1,0 +1,11 @@
+Data persistence can be made through modules but will be very rarely used effectively, DB usage later
+
+
+
+Templating engines : 
+    - EJS (format : <p><%= name %></p>)
+        - Normal HTML & plain JS in the template
+    - Pug (replaces "normal HTML" with a minimal version) (format : p #{name})
+        - Minimal HTML + custom template language
+    - Handlebars (uses HTML, double curly braces) (format : <p> {{ name }} </p>)
+        - Normal HTML + custom template language
