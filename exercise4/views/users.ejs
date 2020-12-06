@@ -3,9 +3,15 @@
     <title>Users list</title>
 </head>
 <body>
-    <ul>
-        <li>User 1</li>
-        <li>User 2</li>
-        <li>User 3</li>
-    </ul>
+    <h1>User list</h1>
+    <% if(users.length === 0) { %>
+        <p>No users found</p>
+
+    <% } else { %>
+        <ul>
+            <% for(let user of users) { %>
+                <li><%= user %></li>
+            <% } %>
+        </ul>
+    <% } %>
 </body>

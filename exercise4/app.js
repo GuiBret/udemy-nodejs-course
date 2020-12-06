@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/users', (req, res) => {
-    res.render('users');
+    res.render('users', {users: users});
 });
 
 app.post('/add-user', (req, res) => {
