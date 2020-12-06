@@ -9,3 +9,8 @@ Templating engines :
         - Minimal HTML + custom template language
     - Handlebars (uses HTML, double curly braces) (format : <p> {{ name }} </p>)
         - Normal HTML + custom template language
+
+
+EJS syntax : 
+    <%= %> : display a variable
+    <% %> : Use JS code
