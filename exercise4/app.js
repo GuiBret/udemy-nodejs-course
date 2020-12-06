@@ -16,11 +16,11 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.get('/', (req, res) => {
     
-    res.render('index');
+    res.render('index', {pageTitle: 'Home page'});
 });
 
 app.get('/users', (req, res) => {
-    res.render('users', {users: users});
+    res.render('users', {users: users, pageTitle: 'User list'});
 });
 
 app.post('/add-user', (req, res) => {
