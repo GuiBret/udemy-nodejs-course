@@ -4,9 +4,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
+const expressHandlebars = require('express-handlebars');
 
-app.set('view engine', 'pug');
+app.engine('hbs', expressHandlebars());
 app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
 
 const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
