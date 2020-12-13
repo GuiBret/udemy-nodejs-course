@@ -41,8 +41,6 @@ module.exports = class Product {
 
   static findById(id, cb) {
     getProductsFromFile((products) => {
-      console.log(products); 
-      console.log(typeof id); 
       const product = products.find((product) => product.id == id);
       cb(product);
       
