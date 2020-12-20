@@ -60,5 +60,20 @@ module.exports = class Product {
     });
     
   }
+
+  static remove(id) {
+    getProductsFromFile((products) => {
+      const productToDeleteIdx = products.findIndex((product) => product.id === id);
+
+      if(productToDeleteIdx !== -1) {
+
+        products.splice(productToDeleteIdx, 1);
+        fs.writeFile(p, JSON.stringify(products), err => {
+          console.log(err);
+        });
+
+      }
+    });
+  }
 };
   

@@ -83,3 +83,16 @@ exports.getProducts = (req, res, next) => {
     });
   });
 };
+
+exports.deleteRemoveProduct = (req, res, next) => {
+  const idToDelete = req.body.productid;
+
+  if(!idToDelete) {
+    return;
+  }
+
+
+  Product.remove(idToDelete);
+
+  res.redirect('/admin/products');
+};
