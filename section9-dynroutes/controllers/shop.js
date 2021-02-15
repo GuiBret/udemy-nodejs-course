@@ -38,7 +38,9 @@ exports.getCart = (req, res, next) => {
   Cart.getCart(cart => {
 
     Product.fetchAll(products => {
-
+      if(!cart) {
+        cart = {products: []};
+      }
       const cartProducts = [];
       for(product of products) {
         // If the product is in the cart, we add it to cartProducts
@@ -94,3 +96,20 @@ exports.getCheckout = (req, res, next) => {
   });
   
 };
+
+exports.postCartDeleteProduct = (req, res, next) => {
+  const prodId = req.body.productId;
+  Product.findById(prodId, (product) => {
+    if(!product) return;
+
+    const price = product.price;
+
+    Cart.deleteProduct(prodId, price);
+
+    res.redirect('/cart');
+
+
+  })
+
+  
+}
