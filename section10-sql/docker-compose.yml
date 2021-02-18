@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  db:
+    container_name: mysql_node_course
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
