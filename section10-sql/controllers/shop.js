@@ -2,10 +2,8 @@ const Product = require('../models/product');
 const Cart = require('../models/cart');
 
 exports.getProducts = (req, res, next) => {
-  console.log('On passe ici');
   // res.send('OK');
   Product.fetchAll().then(([rows, fieldData]) => {
-    console.log("Rows : " + rows);
     res.render('shop/product-list', {
       prods: rows,
       pageTitle: 'All Products',
@@ -17,7 +15,6 @@ exports.getProducts = (req, res, next) => {
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
   Product.findById(prodId).then(([product]) => {
-    console.log(product);
     res.render('shop/product-detail', {
       product: product[0],
       pageTitle: product[0].title,
