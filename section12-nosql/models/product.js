@@ -61,10 +61,10 @@ class Product {
   static deleteById(productId) {
     const db = getDB();
 
-    db.collection('products')
+    return db.collection('products')
       .deleteOne({_id : new mongodb.ObjectId(productId)})
       .then(product => {
-
+        console.log('Product deleted');
       })
       .catch(err => {
         console.log(err);
