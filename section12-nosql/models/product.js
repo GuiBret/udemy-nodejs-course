@@ -57,6 +57,19 @@ class Product {
                console.log(err);
              })
   }
+
+  static deleteById(productId) {
+    const db = getDB();
+
+    db.collection('products')
+      .deleteOne({_id : new mongodb.ObjectId(productId)})
+      .then(product => {
+
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
 }
 
 // const Sequelize = require('sequelize');
