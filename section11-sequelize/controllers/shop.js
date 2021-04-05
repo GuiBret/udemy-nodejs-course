@@ -88,7 +88,9 @@ exports.postCart = (req, res, next) => {
 
             let newQuantity = 1;
             if(product) {
+              newQuantity = product.cartitem.qty + 1;
 
+              return fetchedCart.addProduct(product, { through: {qty: newQuantity}});
             }
 
             return Product.findByPk(prodId).then(
@@ -99,17 +101,26 @@ exports.postCart = (req, res, next) => {
 
           })
           .then(() => {
-            res.redirect('/carts')
+            res.redirect('/cart')
           })
           .catch(); 
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.findBy(prodId, product => {
-    Cart.deleteProduct(prodId, product.price);
+  req.user.getCart()
+  .then(cart => {
+    return cart.getProducts({where: { id: prodId}});
+  })
+  .then(products => {
+    const product = products[0];
+
+    return product.cartitem.destroy();
+  })
+  .then(result => {
     res.redirect('/cart');
-  });
+  })
+  .catch()
 };
 
 exports.getOrders = (req, res, next) => {
