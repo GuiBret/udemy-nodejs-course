@@ -5,10 +5,10 @@ let _db;
 
 const mongoConnect = (_cb) => {
   MongoClient.connect('mongodb+srv://nodejsuser:nodejspassword@cluster0.a7jln.mongodb.net/shop?retryWrites=true&w=majority')
-             .then(result => {
+             .then(client => {
                _db = client.db();
 
-               _cb(result);
+               _cb();
              })
              .catch(err => console.log(err));
 }
