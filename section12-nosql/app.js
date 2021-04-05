@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
-const mongoConnect = require('./util/database');
+const mongoConnect = require('./util/database').mongoConnect;
 
 const app = express();
 
@@ -24,10 +24,12 @@ app.use((req, res, next) => {
   //     next();
   //   })
   //   .catch(err => console.log(err));
+
+  next();
 });
 
 app.use('/admin', adminRoutes);
-// app.use(shopRoutes);
+app.use(shopRoutes); 
 
 mongoConnect((client) => {
   console.log(client);
