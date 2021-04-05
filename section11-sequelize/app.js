@@ -16,11 +16,12 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const Cart = require('./models/cart');
+const CartItem = require('./models/cart-item');
 
 app.use((req, res, next) => {
-    User.findById(1).then(user => {
+    User.findByPk(1).then(user => {
         req.user = user;
-        next();
         next();
     }).catch(err => console.log(err));
 });
@@ -35,6 +36,11 @@ app.use(errorController.get404);
 
 Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
 User.hasMany(Product);
+User.hasOne(Cart);
+Cart.belongsTo(User);
+
+Cart.belongsToMany(Product, {through: CartItem});
+Product.belongsToMany(Cart, {through: CartItem});
 
 
 // Synchronizes the modules in the code with the database (creates tables and relations if needed)
