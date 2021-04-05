@@ -9,6 +9,8 @@ const sequelize = require('./util/database');
 const Product = require('./models/product');
 const User = require('./models/user');
 
+
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -16,8 +18,12 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+
 const Cart = require('./models/cart');
 const CartItem = require('./models/cart-item');
+
+const Order = require('./models/order');
+const OrderItem = require('./models/order-item');
 
 app.use((req, res, next) => {
     User.findByPk(1).then(user => {
@@ -42,6 +48,8 @@ Cart.belongsTo(User);
 Cart.belongsToMany(Product, {through: CartItem});
 Product.belongsToMany(Cart, {through: CartItem});
 
+User.hasMany(Order);
+Order.belongsToMany(Product, { through: OrderItem});
 
 // Synchronizes the modules in the code with the database (creates tables and relations if needed)
 sequelize
@@ -51,11 +59,14 @@ sequelize
         return User.findByPk(1);
     }).then(user => {
         if(!user) {
-            User.create({name: 'Max', email:'test@test.com'});
+            
+            return User.create({name: 'Max', email:'test@test.com'});
         }
+        
         return Promise.resolve(user);
     })
     .then((user) => {
+        
         return user.createCart();
         
     })
